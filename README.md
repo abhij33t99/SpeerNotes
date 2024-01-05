@@ -49,6 +49,4 @@ Note Endpoints
 ### Executing program
 
 * Deploy the jar package and call the rest endpoints.
-```
-code blocks for commands
-```
+
