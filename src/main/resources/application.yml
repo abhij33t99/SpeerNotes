@@ -1,0 +1,20 @@
+spring:
+  data:
+    mongodb:
+      uri : mongodb+srv://abhij33t:abhi12345@speernotes.dbdaxih.mongodb.net/
+      database : SpeerDB
+
+server:
+  port : 8081
+
+resilience4j:
+  ratelimiter:
+    instances:
+      authRateLimiter:
+        limit-refresh-period: 1s
+        limit-for-period: 4
+        timeout-duration: 1s
+      noteRateLimiter:
+        limit-refresh-period: 1s
+        limit-for-period: 4
+        timeout-duration: 1s
