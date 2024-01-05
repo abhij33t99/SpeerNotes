@@ -43,6 +43,7 @@ Note Endpoints
 
 ### Installing
 
+* Change datasource in application.yml to link to your db.
 * Build the maven package as a jar file. All the dependencies will be directly download from Maven repo.
 
 ### Executing program
