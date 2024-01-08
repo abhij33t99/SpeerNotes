@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -35,7 +37,7 @@ public class AuthController {
         return new ResponseEntity<>(authService.signIn(user), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> authFallback(int id, RequestNotPermitted ex){
+    public ResponseEntity<String> authFallback(Principal principal, RequestNotPermitted ex){
         return new ResponseEntity<>("Request limit exceeded", HttpStatus.TOO_MANY_REQUESTS);
     }
 }

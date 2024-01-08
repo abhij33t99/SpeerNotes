@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.security.Principal;
+
 @ContextConfiguration(classes = {AuthController.class})
 @ExtendWith(SpringExtension.class)
 class AuthControllerDiffblueTest {
@@ -92,12 +94,13 @@ class AuthControllerDiffblueTest {
 
     /**
      * Method under test:
-     * {@link AuthController#authFallback(int, RequestNotPermitted)}
+     * {@link AuthController#authFallback(Principal, RequestNotPermitted)}
      */
     @Test
     void testAuthFallback() {
         // Arrange and Act
-        ResponseEntity<String> actualAuthFallbackResult = authController.authFallback(1, null);
+        Principal principal = mock(Principal.class);
+        ResponseEntity<String> actualAuthFallbackResult = authController.authFallback(principal, null);
 
         // Assert
         assertEquals("Request limit exceeded", actualAuthFallbackResult.getBody());
@@ -107,12 +110,13 @@ class AuthControllerDiffblueTest {
 
     /**
      * Method under test:
-     * {@link AuthController#authFallback(int, RequestNotPermitted)}
+     * {@link AuthController#authFallback(Principal, RequestNotPermitted)}
      */
     @Test
     void testAuthFallback2() {
         // Arrange and Act
-        ResponseEntity<String> actualAuthFallbackResult = authController.authFallback(1, mock(RequestNotPermitted.class));
+        Principal principal = mock(Principal.class);
+        ResponseEntity<String> actualAuthFallbackResult = authController.authFallback(principal, mock(RequestNotPermitted.class));
 
         // Assert
         assertEquals("Request limit exceeded", actualAuthFallbackResult.getBody());
